@@ -13,4 +13,7 @@ age - how long an individual can live before being removed <br>
 
 <br>
 
-More on age: The removal for age happens before the removal of excess individuals.
+More on age: The removal for age happens before the removal of excess individuals.<br>
+Printed to the console is: \<Top fitness score> \<Population size after removal> \<Generation><br>
+
+If you find the program isn't working you must make sure the age limit isn't too low.
