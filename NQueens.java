@@ -92,10 +92,11 @@ public class NQueens{
 class QObject{
     int fitness;
     int[] genotype;
-    
+    int age;
     public QObject(int[] a, int fitness){
         this.fitness = fitness;
         genotype = a;
+        age = 0;
     }
     
     public int fitness(){
@@ -134,6 +135,20 @@ class QFinder{
         while(s){
             //sort arraylist by fitness
             this.fitnessSort();
+            //easy enough  to find a winning solution
+            if(population.get(0).fitness() == 0){
+                System.out.println("FOUND A MATCH");
+                System.out.println(population.get(0));
+                System.exit(0);
+            }   
+            //update the age of all subjects
+            for(int i = 0; i < population.size(); i++){
+                population.get(i).age++;
+                if(population.get(i).age > 1000)
+                    population.remove(i);
+            }
+            
+            
             //kill of any items that do not meet the fitness cut off
             //only keep the initial population size amount
             while(population.size() > this.size){
@@ -141,14 +156,11 @@ class QFinder{
                 population.remove(population.size()-1);
             }
             
-            //easy enough  to find a winning solution
-            if(population.get(0).fitness() == 0){
-                System.out.println("FOUND A MATCH");
-                System.out.println(population.get(0));
-                System.exit(0);
-            }
+           
             //keeps track of how many times we loop
             c++;
+            System.out.print(population.get(0).fitness() + " ");
+            System.out.print(population.size() + " ");
             System.out.println(c);
             
             //find parents
