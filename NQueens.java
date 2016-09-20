@@ -12,10 +12,11 @@ public class NQueens{
         int size = Integer.parseInt(args[0]);
         int ps = Integer.parseInt(args[1]);
         int pss = Integer.parseInt(args[2]);
+        int al = Integer.parseInt(args[3]);
         //construct our population array list
         ArrayList<QObject> population = popBuilder(ps, size);
         //setup the qfinder 
-        QFinder qf = new QFinder(population, ps, pss);
+        QFinder qf = new QFinder(population, ps, pss, al);
         //System.out.println(qf.population);
         //run the qfinder
         qf.run();
@@ -121,11 +122,13 @@ class QFinder{
     ArrayList<QObject> population;
     int size;
     int numberOfParents;
+    int ageLimit;
     
-    public QFinder(ArrayList<QObject> a, int s, int parents){
+    public QFinder(ArrayList<QObject> a, int s, int parents, int al){
         population = a;
         size = s;
         numberOfParents = parents;
+        ageLimit = al;
     }
     
     public void run(){
@@ -144,7 +147,7 @@ class QFinder{
             //update the age of all subjects
             for(int i = 0; i < population.size(); i++){
                 population.get(i).age++;
-                if(population.get(i).age > 1000)
+                if(population.get(i).age > this.ageLimit)
                     population.remove(i);
             }
             
