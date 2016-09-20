@@ -1,5 +1,5 @@
 # NQueens
-Quick and dirty solution to the NQueens problem, decided to upload the final version
+A solution to the NQueens problem, decided to upload the final version
 To use compile in java using javac NQueens.java
 to run use java NQueens size, ps, pss
 
